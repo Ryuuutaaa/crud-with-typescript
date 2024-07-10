@@ -1,3 +1,4 @@
+import { formatDate } from "@/lib/ utils";
 import { getContacts } from "@/lib/data";
 
 const ContactTable = async () => {
@@ -20,7 +21,9 @@ const ContactTable = async () => {
               <td className="py-3 px-6">{index + 1}</td>
               <td className="py-3 px-6">{contact.name}</td>
               <td className="py-3 px-6">{contact.phone}</td>
-              <td className="py-3 px-6">{contact.createdAt.toString()}</td>
+              <td className="py-3 px-6">
+                {formatDate(contact.createdAt.toString())}
+              </td>
               <td></td>
             </tr>
           ))}
