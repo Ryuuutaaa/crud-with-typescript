@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { IoAddSharp } from "react-icons/io5";
+import { IoAddSharp, IoPencil, IoTrashOutline } from "react-icons/io5";
 
-const CreateButton = () => {
+export const CreateButton = () => {
   return (
     <>
       <Link
@@ -14,4 +14,22 @@ const CreateButton = () => {
   );
 };
 
-export default CreateButton;
+export const EditButton = () => {
+  return (
+    <>
+      <Link href="contact" className="rounded-sm border p-1 hover:bg-gray-100">
+        <IoPencil />
+      </Link>
+    </>
+  );
+};
+
+export const DeleteButton = () => {
+  return (
+    <>
+      <Link href="contact" className="rounded-sm border p-1 hover:bg-gray-100">
+        <IoTrashOutline />
+      </Link>
+    </>
+  );
+};
