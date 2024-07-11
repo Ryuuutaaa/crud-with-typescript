@@ -2,6 +2,8 @@
 
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const ContactSchema = z.object({
   name: z.string().min(6),
@@ -17,6 +19,7 @@ export const saveContact = async (formData: FormData) => {
       Error: ValidateFields.error.flatten().fieldErrors,
     };
   }
+
   try {
     await prisma.contact.create({
       data: {
@@ -24,5 +27,10 @@ export const saveContact = async (formData: FormData) => {
         phone: ValidateFields.data.phone,
       },
     });
-  } catch (error) {}
+  } catch (error) {
+    return { message: "Failed to created contact" };
+  }
+
+  revalidatePath("/contacts");
+  redirect("/contacts");
 };
