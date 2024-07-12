@@ -10,10 +10,11 @@ const ContactSchema = z.object({
   phone: z.string().min(11),
 });
 
-export const saveContact = async (formData: FormData) => {
+export const saveContact = async (prevState: any, formData: FormData) => {
   const ValidateFields = ContactSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
+
   if (!ValidateFields.success) {
     return {
       Error: ValidateFields.error.flatten().fieldErrors,
