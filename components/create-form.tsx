@@ -2,6 +2,7 @@
 
 import { saveContact } from "@/lib/actions";
 import { useFormState } from "react-dom";
+import { SubmitButton } from "./buttons";
 
 const CreateForm = () => {
   const [state, formAction] = useFormState(saveContact, null);
@@ -49,7 +50,7 @@ const CreateForm = () => {
         <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-sm text-sm w-full px-5 py-3 text-center">
-          Save
+          <SubmitButton label="save" />
         </button>
       </form>
     </div>
