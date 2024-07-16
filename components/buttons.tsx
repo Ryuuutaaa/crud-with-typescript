@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteContact } from "@/lib/actions";
 import clsx from "clsx";
 import Link from "next/link";
 import { useFormStatus } from "react-dom";
@@ -30,12 +31,15 @@ export const EditButton = ({ id }: { id: string }) => {
   );
 };
 
-export const DeleteButton = () => {
+export const DeleteButton = ({ id }: { id: string }) => {
+  const DeleteContactWithId = deleteContact.bind(null, id);
   return (
     <>
-      <Link href="contact" className="rounded-sm border p-1 hover:bg-gray-100">
-        <IoTrashOutline />
-      </Link>
+      <form action={DeleteContactWithId}>
+        <button className="rounded-sm border p-1 hover:bg-gray-100">
+          <IoTrashOutline />
+        </button>
+      </form>
     </>
   );
 };
