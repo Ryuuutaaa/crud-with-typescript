@@ -1,8 +1,13 @@
 "use client";
 
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
 
 const Search = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
   const handleSearch = (term: string) => {
     console.log(term);
   };
