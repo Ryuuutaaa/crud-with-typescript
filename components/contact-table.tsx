@@ -2,8 +2,14 @@ import { formatDate } from "@/lib/ utils";
 import { getContacts } from "@/lib/data";
 import { DeleteButton, EditButton } from "./buttons";
 
-const ContactTable = async () => {
-  const contacts = await getContacts();
+const ContactTable = async ({
+  query,
+  currentPage,
+}: {
+  query: string;
+  currentPage: number;
+}) => {
+  const contacts = await getContacts(query, currentPage);
   return (
     <div>
       <table className="w-full text-sm text-left text-gray-500">
