@@ -2,13 +2,14 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { IoSearch } from "react-icons/io5";
+import { useDebouncedCallback } from "use-debounce";
 
 const Search = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const handleSearch = (term: string) => {
+  const handleSearch = useDebouncedCallback((term: string) => {
     console.log(term);
     const params = new URLSearchParams(searchParams);
     if (term) {
@@ -17,7 +18,7 @@ const Search = () => {
       params.delete("query");
     }
     replace(`${pathname}?${params.toString()}`);
-  };
+  }, 300);
   return (
     <div className="relative flex flex-1">
       <input
