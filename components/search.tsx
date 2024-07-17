@@ -19,6 +19,7 @@ const Search = () => {
     }
     replace(`${pathname}?${params.toString()}`);
   }, 300);
+
   return (
     <div className="relative flex flex-1">
       <input
